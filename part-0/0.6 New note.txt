@@ -5,5 +5,5 @@ server-->browser: [{"message":"note created"}]
 
 note over browser:
 browser executes the function that updates the UI
-witg the data recieved from the server
+with the data recieved from the server
 end note
