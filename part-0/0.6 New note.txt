@@ -1,9 +1,0 @@
-#You can generate this into a web sequence diagram at https://www.websequencediagrams.com/
-browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
-server-->browser: [{"message":"note created"}]
-
-
-note over browser:
-browser executes the function that updates the UI
-with the data recieved from the server
-end note
