@@ -1,8 +1,8 @@
 const Part = (props) => {
     return (
-    <p>
-        {props.name} {props.number}
-    </p>
+        <p>
+            {props.name} {props.number}
+        </p>
     )
 }
 
