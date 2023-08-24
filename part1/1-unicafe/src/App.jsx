@@ -10,8 +10,10 @@ const App = () => {
   const [bad, setBad] = useState(0);
   const all = good + neutral + bad;
 
-  // the average for the 3 items is 3 / the total of all the items
-  const average = 3 / all;
+  // the average for the 3 items is
+  // the sum of the values / number of values
+  // average score (good: 1, neutral: 0, bad: -1)
+  const average = (good - bad) / all;
 
   // only good is positive so the value should be (1 / all) * 100
   const positive = (good / all) * 100;
@@ -34,6 +36,7 @@ const App = () => {
             neutral={neutral}
             bad={bad}
             all={all}
+            average={average}
             positive={positive}
           />
         ) : (
