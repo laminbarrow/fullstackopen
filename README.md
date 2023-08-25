@@ -1,2 +1,2 @@
 # fullstackopen
-My repository for containing all exercises as part of the fullstackopen 2022-2033 (https://fullstackopen.com/en) course that do not need to be in their repository
+This repository contains the exercises I am taking as part of the fullstackopen course (https://fullstackopen.com/en) 
