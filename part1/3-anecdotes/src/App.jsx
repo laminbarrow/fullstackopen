@@ -17,6 +17,8 @@ const App = () => {
   // create a zero filled JavaScript array of arbitrary length 
   const [votes, setVotes] = useState(Array(8).fill(0))
 
+  const [maxVote, setMaxVote] = useState(0)
+
   /**
    * Set Selected quote
    * to a random value
@@ -35,18 +37,32 @@ const App = () => {
     // create copy of votes so we don't mutate the state directly
     const votesCopy = [...votes]
     votesCopy[selected] += 1
+
     setVotes(votesCopy)
+
+    //also update the max vote
+    // Anectdote with the most votes
+    // Using spread operator (ES6)
+    let currentMaxVote = Math.max(...votesCopy)
+    setMaxVote(votesCopy.indexOf(currentMaxVote))
   }
 
 
   return (
     <div>
-      <p>
-        {anecdotes[selected]} has {votes[selected]} votes
-      </p>
-      
-      <button onClick={handleSetVote}>vote</button>
-      <button onClick={handleNextAnecdote}>next anecdote</button>
+      <div>
+      <h1>Anecdote of the day</h1>
+        <p>
+          {anecdotes[selected]} has {votes[selected]} votes
+        </p>
+        
+        <button onClick={handleSetVote}>vote</button>
+        <button onClick={handleNextAnecdote}>next anecdote</button>
+      </div>
+      <div>
+        <h1>Anecdote with the most votes</h1>
+        {anecdotes[maxVote]} has {votes[maxVote]} votes
+      </div>
     </div>
   )
 }
