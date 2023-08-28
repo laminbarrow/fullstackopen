@@ -8,9 +8,21 @@ const Contact = (prop) => {
 }
 
 function App() {
-  const [contacts, setContacts] = useState([])
+  const [contacts, setContacts] = useState([
+    { name: 'Arto Hellas', number: '040-123456', id: 1 },
+    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
+    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
+    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
+  ])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const queriedContacts = contacts.filter((contact) => {
+    return contact.name
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase())
+  }) 
 
   const addNewContact = (event) => {
     event.preventDefault()
@@ -28,6 +40,7 @@ function App() {
     }
     // add new contact
     setContacts(contacts.concat(newContact))
+    setSearchQuery('')
     setNewName('')
     setNewNumber('')
   }
@@ -40,9 +53,19 @@ function App() {
     setNewNumber(e.target.value)
   }
 
+  const handleSearchQuery = (event) => {
+    setSearchQuery(event.target.value)
+  }
+
   return (
     <div>
         <h2>Phonebook</h2>
+        <div>
+          filter show with 
+          <input value={searchQuery} 
+              onChange={handleSearchQuery} />
+        </div>
+        <h3>Add a new contact </h3>
         <form onSubmit={addNewContact}>
           <div>
             name: <input placeholder='new contact..' value={newName} onChange={handleNameChange} />
@@ -56,7 +79,7 @@ function App() {
         </form>
       <h2>Numbers</h2>
       {
-        contacts.map(contact => (
+        queriedContacts.map(contact => (
           <Contact key={contact.name} name={contact.name} number={contact.number} />
         ) )
       }
