@@ -1,34 +1,50 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
+const Contact = (prop) => {
+  return (
+    <div>{prop.name}</div>
+  )
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [contacts, setContacts] = useState([])
+  const [newName, setNewName] = useState('')
+
+  const addPhoneNumber = (event) => {
+    event.preventDefault()
+
+    // new contact object
+    const newContact = {
+      id: contacts.length + 1,
+      name: newName
+    }
+    setContacts(contacts.concat(newContact))
+    setNewName('')
+  }
+
+  const handleNoteChange = (event) => {
+    setNewName(event.target.value)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+        <h2>Phonebook</h2>
+        <form onSubmit={addPhoneNumber}>
+          <div>
+            name: <input placeholder='new contact..' value={newName} onChange={handleNoteChange} />
+          </div>
+          <div>
+            <button type="submit">add</button>
+          </div>
+        </form>
+      <h2>Numbers</h2>
+      {
+        contacts.map(contact => (
+          <Contact key={contact.id} name={contact.name} />
+        ) )
+      }
+    </div>
   )
 }
 
