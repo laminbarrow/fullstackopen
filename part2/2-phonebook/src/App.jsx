@@ -11,15 +11,11 @@ function App() {
   const [contacts, setContacts] = useState([])
   const [newName, setNewName] = useState('')
 
-  const addPhoneNumber = (event) => {
+  const addNewContact = (event) => {
     event.preventDefault()
 
-    // new contact object
-    const newContact = {
-      id: contacts.length + 1,
-      name: newName
-    }
-    setContacts(contacts.concat(newContact))
+    // add new contact
+    setContacts(contacts.concat(newName))
     setNewName('')
   }
 
@@ -30,7 +26,7 @@ function App() {
   return (
     <div>
         <h2>Phonebook</h2>
-        <form onSubmit={addPhoneNumber}>
+        <form onSubmit={addNewContact}>
           <div>
             name: <input placeholder='new contact..' value={newName} onChange={handleNoteChange} />
           </div>
@@ -41,7 +37,7 @@ function App() {
       <h2>Numbers</h2>
       {
         contacts.map(contact => (
-          <Contact key={contact.id} name={contact.name} />
+          <Contact key={contact} name={contact} />
         ) )
       }
     </div>
