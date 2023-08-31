@@ -3,16 +3,20 @@ import './App.css'
 import SearchFilter from './components/SearchFilter'
 import AddContactForm from './components/AddContactForm'
 import Contacts from './components/Contacts'
+import { useEffect } from 'react';
+import axios  from 'axios';
 
 function App() {
-  const [contacts, setContacts] = useState([
-    { name: 'Arto Hellas', number: '040-123456', id: 1 },
-    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
-    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
-    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
-  ])
-
+  const [contacts, setContacts] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3002/persons')
+      .then(response => {
+        setContacts(response.data)
+      })
+  },[])
 
   const queriedContacts = contacts.filter((contact) => {
     return contact.name
