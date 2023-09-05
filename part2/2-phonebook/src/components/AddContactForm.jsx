@@ -1,4 +1,5 @@
 import { useState } from "react"
+import axios from "axios"
 
 export default function AddContactForm({contacts, setContacts}) {
     
@@ -19,10 +20,17 @@ export default function AddContactForm({contacts, setContacts}) {
           //exit the function
           return
         }
-        // add new contact
-        setContacts(contacts.concat(newContact))
-        setNewName('')
-        setNewNumber('')
+
+        axios
+          .post('http://localhost:3002/persons', newContact)
+          .then(response => {
+            
+             // add new contact
+            setContacts(contacts.concat(response.data))
+            setNewName('')
+            setNewNumber('')
+          })
+       
       }
     
       const handleNameChange = (event) => {
