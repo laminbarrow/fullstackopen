@@ -22,17 +22,25 @@
     },
     {
       "name": "Testing",
-      "number": "34534",
-      "id": 5
+      "number": "2222",
+      "id": 5,
+      "newContact": {
+        "name": "Testing",
+        "number": "11111"
+      }
     },
     {
       "name": "Testing ",
       "number": "456565",
-      "id": 6
+      "id": 6,
+      "newContact": {
+        "name": "Testing ",
+        "number": "11111"
+      }
     },
     {
       "name": "phonebookservice test",
-      "number": "345454",
+      "number": "",
       "id": 7
     }
   ]

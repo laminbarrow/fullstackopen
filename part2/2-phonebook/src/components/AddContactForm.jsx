@@ -19,12 +19,26 @@ export default function AddContactForm({ contacts, setContacts }) {
       (contact) => contact.name === newName
     );
     if (existingContact) {
-      alert(`${newName} is already added to phonebook`);
+      if (window
+        .confirm(`${existingContact.name} is already added to phonebook, replace the old number with a new one?`)) {
+
+          //update existing contact
+          const updateContact = {...existingContact, number: newContact.number}
+          
+          phonebookservice
+            .update(existingContact.id, updateContact)
+            .then(returnedContact => {
+              setContacts(contacts.map(contact => {
+                return contact.id !== existingContact.id ? contact : returnedContact
+              }))
+            })
+      }
 
       //exit the function
       return;
     }
 
+    // create contact
     phonebookservice.create(newContact).then((response) => {
       // add new contact
       setContacts(contacts.concat(response));
