@@ -4,25 +4,25 @@ import SearchFilter from './components/SearchFilter'
 import AddContactForm from './components/AddContactForm'
 import Contacts from './components/Contacts'
 import { useEffect } from 'react';
-import axios  from 'axios';
-
+import phonebookservice from './services/phonebookservice'
 function App() {
   const [contacts, setContacts] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3002/persons')
+    phonebookservice
+      .getAll()
       .then(response => {
-        setContacts(response.data)
+        setContacts(response)
       })
   },[])
 
-  const queriedContacts = contacts.filter((contact) => {
-    return contact.name
+  const queriedContacts = searchQuery.length ? contacts.filter((contact) => {
+      return contact.name
           .toLowerCase()
           .includes(searchQuery.toLowerCase())
-  }) 
+    
+  }) : contacts
 
   const handleSearchQuery = (event) => {
     setSearchQuery(event.target.value)
