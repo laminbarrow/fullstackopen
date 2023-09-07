@@ -5,10 +5,12 @@ import AddContactForm from "./components/AddContactForm";
 import Contact from "./components/Contact";
 import { useEffect } from "react";
 import phonebookservice from "./services/phonebookservice";
+import Notification from "./components/Notification";
 
 function App() {
   const [contacts, setContacts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [notification, setNotification] = useState({message: null, type:null})
 
   useEffect(() => {
     phonebookservice.getAll().then((response) => {
@@ -47,13 +49,17 @@ function App() {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={notification.message} type={notification.type}/>
       <SearchFilter
         searchQuery={searchQuery}
         handleSearchQuery={handleSearchQuery}
       />
 
       <h3>Add a new contact </h3>
-      <AddContactForm contacts={contacts} setContacts={setContacts} />
+      <AddContactForm 
+        contacts={contacts} 
+        setContacts={setContacts} 
+        setNotification={setNotification} />
 
       <h2>Numbers</h2>
       {queriedContacts.map(contact => (

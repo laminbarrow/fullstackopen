@@ -1,7 +1,7 @@
 import { useState } from "react";
 import phonebookservice from "../services/phonebookservice";
 
-export default function AddContactForm({ contacts, setContacts }) {
+export default function AddContactForm({ contacts, setContacts, setNotification }) {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
 
@@ -44,6 +44,17 @@ export default function AddContactForm({ contacts, setContacts }) {
       setContacts(contacts.concat(response));
       setNewName("");
       setNewNumber("");
+
+      setNotification({
+        message: `Added ${newContact.name}`,
+        type: 'success'
+      })
+
+      // hide message after 5 seconds
+      setTimeout(() => {
+        setNotification({message: null, type: null})
+      }, 5000);
+      
     });
   };
 
