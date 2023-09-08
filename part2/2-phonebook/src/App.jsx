@@ -41,6 +41,18 @@ function App() {
         .then((response) => {
           // update contacts
           setContacts(contacts.filter(contact => contact.id !== contactID))
+      }).catch(error => {
+        setNotification({
+          message: `${contact.name} has already been deleted from server`,
+          type: 'error'
+        })
+  
+        // hide message after 5 seconds
+        setTimeout(() => {
+          setNotification({message: null, type: null})
+        }, 5000);
+        
+        setContacts(contacts.filter(contact => contact.id !== contactID))
       });
     }
 

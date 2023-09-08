@@ -32,6 +32,19 @@ export default function AddContactForm({ contacts, setContacts, setNotification 
                 return contact.id !== existingContact.id ? contact : returnedContact
               }))
             })
+            .catch(error => {
+              setNotification({
+                message: `${existingContact.name} has already been removed from server`,
+                type: 'error'
+              })
+        
+              // hide message after 5 seconds
+              setTimeout(() => {
+                setNotification({message: null, type: null})
+              }, 5000);
+              
+              setContacts(contacts.filter(contact => contact.id !== existingContact.id))
+            })
       }
 
       //exit the function
