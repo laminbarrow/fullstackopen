@@ -1,3 +1,5 @@
+import Weather from './Weather';
+
 export default function Country ({country}){
     console.log(country)
     return (
@@ -21,6 +23,8 @@ export default function Country ({country}){
                 }
             </ul>
             <img width="200" src={country.flags['png']} alt={country.flags['alt']} />
+
+            <Weather country={country} />
         </div>
     )
 }
