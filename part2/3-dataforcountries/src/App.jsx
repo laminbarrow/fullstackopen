@@ -34,7 +34,7 @@ function App() {
     <>
       <h1>Data for countries</h1>
       <SearchFilter searchValue={searchValue} handleSearchValue={handleSearchValue} />
-      <Countries countries={filteredCountries} />
+      <Countries countries={filteredCountries} setSearchValue={setSearchValue} />
     </>
   )
 }

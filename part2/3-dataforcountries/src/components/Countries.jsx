@@ -1,6 +1,6 @@
 import Country from "./Country"
 
-const Countries = ({ countries }) => {
+const Countries = ({ countries, setSearchValue }) => {
 
   if( countries.length === 1){
     return <Country country={countries[0]} />
@@ -12,9 +12,14 @@ const Countries = ({ countries }) => {
 
   return countries.map((country) => {
     return (
-        <div key={country.name.common}>
-            {country.name.common}
+      <>
+        <div key={country.name.official}>
+            {country.name.common} 
+            <button onClick={() => setSearchValue(country.name.common)}>
+              show
+            </button>
         </div>
+      </>
     )
   })
 }
