@@ -7,7 +7,7 @@ const Countries = ({ countries, setSearchValue }) => {
   }
 
   if (countries.length > 10) {
-    return "To many matches, specify another filter"
+    return "Too many matches, specify another filter"
   }
 
   return countries.map((country) => {
