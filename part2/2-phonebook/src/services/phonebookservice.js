@@ -1,6 +1,11 @@
 import axios from 'axios'
 
-const baseURL = 'http://localhost:3002/persons'
+// without phonebackend
+// const baseURL = 'http://localhost:3002/persons'
+
+// with phonebackend
+const baseURL = '/api/persons'
+
 
 const getAll = () => {
     return axios.get(baseURL).then(response => response.data)
