@@ -1,5 +1,9 @@
 # React + Vite
 
+This project has been updated to allow it to use https://github.com/laminbarrow/fullstackopen-part3-phonebook as a backend service.
+
+
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
