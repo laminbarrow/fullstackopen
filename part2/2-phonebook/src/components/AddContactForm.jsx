@@ -52,22 +52,34 @@ export default function AddContactForm({ contacts, setContacts, setNotification 
     }
 
     // create contact
-    phonebookservice.create(newContact).then((response) => {
-      // add new contact
-      setContacts(contacts.concat(response));
-      setNewName("");
-      setNewNumber("");
+    phonebookservice
+      .create(newContact)
+      .then((response) => {
+        // add new contact
+        setContacts(contacts.concat(response));
+        setNewName("");
+        setNewNumber("");
 
+        setNotification({
+          message: `Added ${newContact.name}`,
+          type: 'success'
+        })
+
+        // hide message after 5 seconds
+        setTimeout(() => {
+          setNotification({message: null, type: null})
+        }, 5000);
+      
+    }).catch((error) => {
       setNotification({
-        message: `Added ${newContact.name}`,
-        type: 'success'
+        message: `Error: ${error.response.data.error}`,
+        type: 'error'
       })
 
       // hide message after 5 seconds
       setTimeout(() => {
         setNotification({message: null, type: null})
       }, 5000);
-      
     });
   };
 
